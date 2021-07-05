@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/head') %>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/styles/visualiseGraph/visualise.css" />
+
+		<!-- JS SCRIPTS -->
+		<script src="/scripts/dataStructures/graph.js"></script>
+		<script src="/scripts/visualiseGraph/visualiseBundle.js"></script>
+		<script>
+			async function main() {
+				setTimeout(async () => {
+					let graph = await setupGraph();
+					await visualiseGraph(graph);
+					setupHighlightedElements();
+				}, 200);
+			}
+
+			function setupGraph() {
+				// extract graph data
+				const { directed, matrix, nodes, weighted } = JSON.parse(`<%- graphData %>`);
+
+				// load graph object
+				let graph = new Graph(directed, weighted);
+				graph.graph = matrix;
+				graph.nodes = nodes;
+
+				return new Promise((resolve, reject) => {
+					resolve(graph);
+				});
+			}
+
+			window.onload = () => {
+				// call main after all scripts loaded
+				if (document.readyState == "complete") {
+					main();
+				} else {
+					document.onreadystatechange = () => {
+						if (document.readyState === "complete") {
+							main();
+						}
+					};
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<a href="traverse/type">Traverse Graph</a>
+		<h1><%- title %></h1>
+
+		<!-- VISUALISE GRAPH -->
+		<div id="graphCanvas"></div>
+		<div id="graphInfo"></div>
+	</body>
+</html>

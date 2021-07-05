@@ -1,0 +1,15 @@
+.rowNum {
+	background-color: #ebebeb;
+	resize: none;
+	border: none;
+	outline: none;
+	overflow-y: hidden;
+	vertical-align: top;
+}
+.inputList {
+	background-color: #fcfafa;
+	resize: none;
+	border: none;
+	outline: none;
+	overflow-x: scroll;
+}

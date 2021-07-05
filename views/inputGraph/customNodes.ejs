@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/head') %>
+
+		<link rel="stylesheet" href="/styles/alert.css" />
+		<link rel="stylesheet" href="/styles/inputGraph/customNodes.css" />
+
+		<script src="/scripts/inputGraph/customNodes.js"></script>
+		<script>
+			window.onload = () => {
+				weighted = "<%- weighted %>" === "true" ? true : false;
+				directed = "<%- directed %>" === "true" ? true : false;
+				inputMethod = "<%- inputMethod %>";
+
+				setLines();
+				setupAlert();
+			};
+		</script>
+	</head>
+	<body>
+		<h1>Input Custom Graph - Node Names</h1>
+
+		<span id="alert" class="alert">
+			<span id="alertMessage"></span>
+			<span id="close-button" class="close-button">✖️</span>
+		</span>
+
+		<form action="JavaScript:submitNodes()">
+			<textarea
+				id="rowNum"
+				class="rowNum"
+				cols="3"
+				rows="21"
+				readonly
+			></textarea>
+			<textarea
+				id="inputList"
+				name="inputList"
+				class="inputList"
+				cols="15"
+				rows="20"
+				spellcheck="false"
+				wrap="off"
+				oninput="checkLineCount(this)"
+				onscroll="syncScroll()"
+			></textarea
+			><br /><br />
+
+			<input type="submit" />
+		</form>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <script src="/scripts/inputGraph/custom.js"></script>
+</head>
+<body>
+    <h1>Input Custom Graph</h1>
+
+    <!-- <form action="/input/custom" method="post"> -->
+    <form action="JavaScript:submitGraphType()">
+        <!-- Graph type -->
+        <label for="">Graph Type:</label>
+        <br>
+        <input type="checkbox" id="weighted" name="weighted">
+        <label for="">Weighted</label>
+        <br>
+        <input type="checkbox" id="directed" name="directed">
+        <label for="">Directed</label>
+        <br><br>
+
+        <!-- Input method -->
+        <label for="">Data Structure:</label><br>
+
+        <select name="inputMethod" id="inputMethod" required>
+            <option disabled selected value>--Choose graph type--</option>
+            <option value="edgeList">Edge List</option>
+            <option value="adjacencyList">Adjacency List</option>
+            <option value="adjacencyMatrix">Adjacency Matrix</option>
+        </select><br><br>
+
+        <!-- Submit form -->
+        <input type="submit">
+    </form>
+</body>
+</html>

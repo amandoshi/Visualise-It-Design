@@ -1,0 +1,20 @@
+.nodeList {
+	background-color: #ebebeb;
+	resize: none;
+	border: none;
+	overflow-y: hidden;
+	vertical-align: top;
+	outline: none;
+}
+
+.nodeListScroll {
+	overflow-x: scroll;
+}
+
+.inputList {
+	background-color: #fcfafa;
+	resize: none;
+	border: none;
+	overflow-x: scroll;
+	outline: none;
+}

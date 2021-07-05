@@ -1,0 +1,8 @@
+#graphCanvas {
+	height: 75%;
+	width: 75%;
+	position: absolute;
+	left: 300;
+	top: 300;
+	border: 1px solid;
+}

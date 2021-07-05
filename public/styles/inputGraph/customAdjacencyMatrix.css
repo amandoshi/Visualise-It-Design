@@ -1,0 +1,31 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+td,
+th {
+	max-width: 100px;
+}
+
+input[type="number"] {
+	outline: none;
+	text-align: center;
+	border: 1px solid rgb(70, 98, 109);
+	border-radius: 5px;
+	width: 50px;
+}
+
+.selfEdge {
+	/* text-decoration-color: white; */
+	background-color: #4d4d4d;
+}
+
+.selfEdge::placeholder,
+.copiedEdge::placeholder {
+	color: white;
+}
+
+.copiedEdge {
+	background-color: rgb(165, 165, 165);
+}

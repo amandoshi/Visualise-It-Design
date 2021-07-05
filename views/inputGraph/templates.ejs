@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <h1>Select Template</h1>
+
+    <form action="/input/template" method="post">
+        <!-- Graph template -->
+        <label for="">Templates:</label>
+        <br>
+        <select name="template" id="" required>
+            <option disabled selected value>--Choose graph template--</option>
+            <option value="00">Unweighted, Undirected</option>
+            <option value="10">Weighted, Undirected</option>
+            <option value="11">Weighted, Directed</option>
+        </select>
+        <br><br>
+
+        <!-- Submit form -->
+        <input type="submit">
+
+    </form>
+</body>
+</html>

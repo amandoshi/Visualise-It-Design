@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/head') %>
+
+		<link rel="stylesheet" href="/styles/alert.css" />
+		<link rel="stylesheet" href="/styles/inputGraph/customAdjacencyList.css" />
+
+		<script src="/scripts/dataStructures/graph.js"></script>
+		<script src="/scripts/inputGraph/customAdjacencyList.js"></script>
+		<script>
+			window.onload = () => {
+				nodes = "<%- nodes %>".split(" ");
+				weighted = "<%- weighted %>" === "true" ? true : false;
+				directed = "<%- directed %>" === "true" ? true : false;
+
+				formatTextArea(nodes);
+				setupAlert();
+			};
+		</script>
+	</head>
+	<body>
+		<h1>Input Custom Graph - Adjacency List</h1>
+
+		<span id="alert" class="alert">
+			<span id="alertMessage"></span>
+			<span id="close-button" class="close-button">✖️</span>
+		</span>
+
+		<form action="JavaScript:submitAdjacencyList()">
+			<textarea id="nodeList" class="nodeList" readonly></textarea>
+			<textarea
+				id="inputList"
+				name="inputList"
+				class="inputList"
+				cols="45"
+				spellcheck="false"
+				wrap="off"
+			></textarea
+			><br /><br />
+
+			<input type="submit" />
+		</form>
+	</body>
+</html>

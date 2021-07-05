@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+
+    <link rel="stylesheet" href="/styles/visualiseGraph/visualise.css">
+    
+    <!-- JS SCRIPTS -->
+    <script src="/scripts/dataStructures/graph.js"></script>
+    <script src="/scripts/dataStructures/queue.js"></script>
+    <script src="/scripts/traversalAlgorithms/unweighted/bfs.js"></script>
+    <script src="/scripts/traverseGraph/traverseBundle.js"></script>
+    <script>
+        async function main() {
+            setTimeout(async () => {
+                let graph = await setupGraph();
+                await visualiseGraph(graph);
+                setupHighlightedElements();
+
+                // test code
+                let startNodeIndex = 1;
+                let targetNodeIndex = 3;
+
+                let bfs = new Bfs(graph, startNodeIndex, targetNodeIndex);
+                //runBfs(bfs);
+                runTraversal(bfs);
+
+            }, 200);
+		}
+
+        function setupGraph() {
+            // data - weighted, directed, matrix, nodes, traversalType, startNodeIndex, targetNodeIndex
+
+            // extract graph data
+            //const { weighted, directed, matrix, nodes, traversalType, startNodeIndex, targetNodeIndex } = JSON.parse(`<%- graphData %>`);
+
+            // TEST CODE
+            let weighted = false;
+            let directed = true;
+
+            let matrix = new Array();
+            let nodes = new Array();
+            let LENGTH = 100;
+
+            for (let i = 0; i < LENGTH; i++) {
+                subArr = new Array(LENGTH)
+                // generate 10 random numbers
+                tempNodes = new Array()
+                for (let j = 0; j < 2; j++) {
+                    tempNodes.push(Math.floor(Math.random()*LENGTH)+1)
+                }
+
+                for (let j = 0; j < LENGTH; j++) {
+                    if (!(i == j)) {
+                        if (tempNodes.includes(j)) {
+                            subArr[j] = 1
+                        } else {
+                            subArr[j] = 0
+                        }
+                    } else {
+                        subArr[j] = 0
+                    }
+                }
+                matrix.push(subArr);
+                nodes.push(`${i}`)
+            }
+
+            // matrix = [
+            //     [ 0, 1, 1, 1, 1, 0 ],
+            //     [ 0, 0, 1, 0, 0, 0 ],
+            //     [ 0, 1, 0, 0, 0, 1 ],
+            //     [ 0, 0, 0, 0, 0, 0 ],
+            //     [ 0, 0, 0, 1, 0, 0 ],
+            //     [ 1, 0, 1, 0, 1, 0 ]
+            // ]
+
+            // matrix = [  [0, 1, 1, 1, 0, 0, 0],
+            //                 [1, 0, 0, 0, 1, 0, 0],
+            //                 [1, 0, 0, 0, 0, 0, 0],
+            //                 [1, 0, 0, 0, 0, 0, 0],
+            //                 [0, 1, 0, 0, 0, 0, 1],
+            //                 [0, 0, 0, 0, 0, 0, 1],
+            //                 [0, 0, 0, 0, 1, 1, 0]
+            // ]
+                
+            // nodes = [ '1', '5', '7', '9', '11', '3' ];
+
+
+            // load graph object
+            let graph = new Graph(directed, weighted);
+            graph.graph = matrix;
+            graph.nodes = nodes;
+
+            return new Promise((resolve, reject) => {
+                resolve(graph);
+            });
+        }
+
+        window.onload = () => {
+				// call main after all scripts loaded
+				if (document.readyState == "complete") {
+					main();
+				} else {
+					document.onreadystatechange = () => {
+						if (document.readyState === "complete") {
+							main();
+						}
+					};
+				}
+			};
+
+        
+    </script>
+</head>
+<body>
+    <h1><%- title %></h1>
+
+    <!-- <%- graphData %> -->
+
+    <!-- VISUALISE GRAPH -->
+	<div id="graphCanvas"></div>
+	<div id="graphInfo"></div>
+</body>
+</html>

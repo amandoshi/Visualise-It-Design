@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <h1>Upload Graph</h1>
+
+    <!-- TEST CODE -->
+    <script>
+        function test() {
+            console.log('mission successful')
+            const csv = document.getElementById('file').files[0];
+            console.log(csv);
+        }
+    </script>
+
+    <!-- TEST CODE -->
+    <form action="JavaScript:test()">
+
+    <!-- <form action="/input/custom" method="post"> -->
+        
+        <!-- Graph type -->
+        <label for="">Graph Type:</label>
+        <br>
+        <input type="file" name="file" id="file">
+        <br><br>
+
+        <!-- Submit form -->
+        <input type="submit">
+
+    </form>
+</body>
+</html>

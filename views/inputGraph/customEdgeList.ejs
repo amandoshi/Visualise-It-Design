@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/head') %>
+
+		<link rel="stylesheet" href="/styles/alert.css" />
+		<link rel="stylesheet" href="/styles/inputGraph/customEdgeList.css" />
+
+		<script src="/scripts/dataStructures/graph.js"></script>
+		<script src="/scripts/inputGraph/customEdgeList.js"></script>
+		<script>
+			let lineCount;
+			let weighted;
+			let directed;
+
+			window.onload = () => {
+				lineCount = 1;
+				updateLineCount();
+				document.getElementById("close-button").onclick = hideAlert;
+
+				weighted = "<%- weighted %>" === "true" ? true : false;
+				directed = "<%- directed %>" === "true" ? true : false;
+			};
+		</script>
+	</head>
+	<body>
+		<h1>Input Custom Graph - Edge List</h1>
+
+		<!-- INFORMATION -->
+		<div>
+			<p>Weighted: <%- weighted %></p>
+			<p>Directed: <%- directed %></p>
+		</div>
+
+		<!-- ALERT -->
+		<span id="alert" class="alert">
+			<span id="alertMessage"></span>
+			<span id="close-button" class="close-button">✖️</span>
+		</span>
+
+		<!-- EDGE LIST INPUT -->
+		<form action="JavaScript:submitEdgeList()">
+			<textarea
+				id="rowNum"
+				class="rowNum"
+				cols="3"
+				rows="21"
+				readonly
+			></textarea>
+			<textarea
+				id="inputList"
+				name="inputList"
+				class="inputList"
+				cols="15"
+				rows="20"
+				spellcheck="false"
+				wrap="off"
+				oninput="checkLineCount(this)"
+				onscroll="syncScroll()"
+			></textarea
+			><br /><br />
+
+			<input type="hidden" name="weighted" value="<%- weighted %>" />
+			<input type="hidden" name="directed" value="<%- directed %>" />
+
+			<input type="submit" />
+		</form>
+	</body>
+</html>

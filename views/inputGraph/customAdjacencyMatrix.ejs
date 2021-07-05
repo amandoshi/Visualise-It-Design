@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/head') %>
+
+        <!-- STYLE SHEETS -->
+		<link rel="stylesheet" href="/styles/alert.css" />
+		<link
+			rel="stylesheet"
+			href="/styles/inputGraph/customAdjacencyMatrix.css"
+		/>
+
+        <!-- SCRIPTS -->
+		<script src="/scripts/dataStructures/graph.js"></script>
+		<script src="/scripts/inputGraph/customAdjacencyMatrix.js"></script>
+		<script>
+			window.onload = () => {
+				nodes = "<%- nodes %>".split(" ");
+				weighted = "<%- weighted %>" === "true" ? true : false;
+				directed = "<%- directed %>" === "true" ? true : false;
+
+				setupAlert();
+				setupMatrix();
+			};
+		</script>
+	</head>
+	<body>
+		<h1>Input Custom Graph - Adjacency Matrix</h1>
+
+        <!-- ALERT -->
+		<span id="alert" class="alert">
+			<span id="alertMessage"></span>
+			<span id="close-button" class="close-button">✖️</span>
+		</span>
+
+        <!-- MATRIX INPUT FORM -->
+		<form action="JavaScript:submitMatrix()">
+			<table id="matrixInput"></table>
+			<br />
+			<input type="submit" />
+		</form>
+	</body>
+</html>

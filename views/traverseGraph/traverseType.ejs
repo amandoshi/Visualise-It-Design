@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/head') %>
+		<link rel="stylesheet" href="/styles/alert.css">
+		<script src="/scripts/traverseGraph/traverseType.js"></script>
+		<script>
+			let graphData;
+
+			function main() {
+				setTimeout(() => {
+					document.getElementById("close-button").onclick = hideAlert;
+
+					// get graph data
+					graphData = JSON.parse(`<%- graphData %>`)
+
+					populateNodes();
+				});
+			}
+
+			
+			window.onload = () => {
+				// call main after all scripts loaded
+				if (document.readyState == "complete") {
+					main();
+				} else {
+					document.onreadystatechange = () => {
+						if (document.readyState === "complete") {
+							main();
+						}
+					};
+				}
+			};
+		</script>
+	</head>
+
+	<body>
+		<h1><%- title %></h1>
+
+		<!-- ALERT -->
+		<span id="alert" class="alert">
+			<span id="alertMessage"></span>
+			<span id="close-button" class="close-button">✖️</span>
+		</span>
+
+		<!-- GRAPH TYPE INPUT -->
+		<form action="JavaScript:submitTraversalType()">
+			<!-- SELECT START NODE -->
+			<label>Start Node:</label><br>
+			<select id="startNode" required></select><br><br>
+
+			<!-- SELECT TARGET NODE -->
+			<label>Target Node:</label><br>
+			<select id="targetNode" required></select><br><br>
+
+			<!-- SELECT GRAPH TYPE -->
+			<label>Graph Type:</label><br>
+			<select id="traverseType" required>
+				<option disabled selected value>--Choose traversal type--</option>
+				<option value="bellmandFord">Bellmand Ford</option>
+				<option value="bfs">Breadth-First Search</option>
+				<option value="dfs">Depth-First Search</option>
+				<option value="dijkstra">Dijkstra's Shortest Path</option>
+				<option value="floydWarshall">Floyd Warshall</option>
+			</select><br><br>
+			<input type="submit">
+		</form>
+	</body>
+</html>

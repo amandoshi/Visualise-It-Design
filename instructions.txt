@@ -1,0 +1,4 @@
+Commands to initialise npm folder:
+    npm install init
+    npm install
+    npm i --save <dependency>
